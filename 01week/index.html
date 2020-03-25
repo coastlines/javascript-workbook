@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="./js-precourse-style.css">
+    <script src="main.js"></script>
+  </head>
+  <body onload="ifHalfTrue()">
+    <h1>Hello World!</h1>
+    <hr/>
+
+    <div id="display-element"></div>
+    <button onclick="displayDate()">Press for Current Date and Time</button>
+    <hr/>
+
+    <button onclick="numToString()">Convert a Number to a String</button>
+    <div id="numToStringText"></div>
+    <hr />
+
+    <button onclick="stringToNum()">Convert a String to a Number</button>
+    <div id="stringToNumText"></div>
+    <hr />
+
+    <button onclick="whatDataType()">Display different data types</button>
+    <div id="whatDataTypeText"></div>
+    <hr />
+    <p>Add Two Numbers</p>
+    <input type="text" id="num1" autocomplete="off">
+    <br>+<br>
+    <input type="text" id="num2" autocomplete="off">
+    <br>
+    <input type="submit" onclick="addTwoNumbers()" value="add numbers"> 
+    <div id="addTwoNumbersText"></div>
+    <hr />
+
+    <p>Find a green box by clicking on the box.</p>
+      <div onclick="ifEitherTrue(this)" class="boxBGC"></div>
+
+    <p>Find a green box with orange text by clicking on the box.</p>
+      <div onclick="ifBothTrue(this)" class="boxBGC"></div>
+
+    <button onclick="ifBothFalse()">Two False Statements</button>
+    <div id="ifBothFalseText"></div>
+    <hr />
+
+  </body>
+</html>

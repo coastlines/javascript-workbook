@@ -1,0 +1,12 @@
+.boxBGC {
+  background-color: salmon;
+  height: 100px;
+  width: 100px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
