@@ -11,11 +11,23 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+
 // the function that will be called by the unit test below
 const rockPaperScissors = (hand1, hand2) => {
-
   // Write code here
   // Use the unit test to see what is expected
+let answer1 = hand1.toLowerCase().trim()
+let answer2 = hand2.toLowerCase().trim()
+
+  if (answer1 == answer2) {
+    return "It's a tie!"
+  } else if ( (answer1 === 'rock' && answer2 === 'scissors') ||
+              (answer1 === 'paper' && answer2 === 'rock') ||
+              (answer1 === 'scissors' && answer2 === 'paper') ) {
+    return 'Hand one wins!'
+  } else {
+    return 'Hand two wins!'
+  }
 
 }
 
