@@ -20,7 +20,20 @@ const rps = (player1, player2) => {
   }
 }
 
+return answer1 = hand1.toLowerCase().trim();
+return answer2 = hand2.toLowerCase().trim();
 
+  const trimAndLowerCase = () => {
+    let answer1 = hand1.toLowerCase().trim();
+    let answer2 = hand2.toLowerCase().trim();
+ }
+
+ let answer1 = hand1.toLowerCase().trim()
+ let answer2 = hand2.toLowerCase().trim()
+
+ if ( (hand1 || hand2) !== 'rock' || (hand1 || hand2) !== 'paper' || (hand1 || hand2) !== 'scissors') {
+  return 'Invalid entry.  Please enter rock, paper, or scissors.';
+} else if (answer1 == answer2) {
 
 // if (answer1 == answer2) {
 //   return "It's a draw!"

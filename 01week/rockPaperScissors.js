@@ -10,23 +10,24 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-
+// trim white space and convert to lowercase
+const trimAndLowerCase = (response) => {
+    return response.toLowerCase().trim();
+}
 
 // the function that will be called by the unit test below
-const rockPaperScissors = (hand1, hand2) => {
-  // Write code here
-  // Use the unit test to see what is expected
-let answer1 = hand1.toLowerCase().trim()
-let answer2 = hand2.toLowerCase().trim()
 
-  if (answer1 == answer2) {
+const rockPaperScissors = (hand1, hand2) => {
+  let answer1 = hand1
+  let answer2 = hand2
+   if (answer1 == answer2) {
     return "It's a tie!"
-  } else if ( (answer1 === 'rock' && answer2 === 'scissors') ||
-              (answer1 === 'paper' && answer2 === 'rock') ||
-              (answer1 === 'scissors' && answer2 === 'paper') ) {
-    return 'Hand one wins!'
+  } else if ( (answer1 =='rock' && answer2 == 'scissors') ||
+              (answer1 == 'paper' && answer2 == 'rock') ||
+              (answer1 == 'scissors' && answer2 == 'paper') ) {
+      return 'Hand one wins!'
   } else {
-    return 'Hand two wins!'
+      return 'Hand two wins!'
   }
 
 }
@@ -35,13 +36,24 @@ let answer2 = hand2.toLowerCase().trim()
 // to run the function use the command: node main.js
 // to close it ctrl + C
 function getPrompt() {
-  rl.question('hand1: ', (answer1) => {
-    rl.question('hand2: ', (answer2) => {
-      console.log( rockPaperScissors(answer1, answer2) );
+  rl.question('hand1: ', (answer1) => { 
+    answer1 = trimAndLowerCase(answer1); 
+    if ( answer1 !== 'rock' && answer1 !== 'paper' && answer1 !== 'scissors') {
+      console.log('Hand One, please enter a valid hand')
       getPrompt();
-    });
+    }
+      rl.question('hand2: ', (answer2) => {
+        answer2 = trimAndLowerCase(answer2);
+        if ( answer2 !== 'rock' && answer2 !== 'paper' && answer2 !== 'scissors') {
+          console.log('Hand Two, please enter a valid hand')
+          // find a way to make this work properly
+        } 
+          console.log( rockPaperScissors(answer1, answer2) );
+          getPrompt(); 
+    }); 
   });
 }
+
 
 // Unit Tests
 // You use them run the command: npm test main.js
