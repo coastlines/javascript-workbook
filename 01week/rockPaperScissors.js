@@ -18,8 +18,8 @@ const trimAndLowerCase = (response) => {
 // the function that will be called by the unit test below
 
 const rockPaperScissors = (hand1, hand2) => {
-  let answer1 = hand1
-  let answer2 = hand2
+  let answer1 = trimAndLowerCase(hand1)
+  let answer2 = trimAndLowerCase(hand2)
    if (answer1 == answer2) {
     return "It's a tie!"
   } else if ( (answer1 =='rock' && answer2 == 'scissors') ||
