@@ -24,23 +24,47 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
+  for (let i = 0; i < board.length; i++) {
+    //checks to see if the initial position is not empty and if horizontal win conditions are true
+    if(board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2])
+    return true
+  }
 }
 
 function verticalWin() {
-  // Your code here
+  for (let i = 0; i < board.length; i++) {
+    //checks to see if the initial position is not empty and if vertical win conditions are true
+    if(board[0][i] != ' ' && board[0][i] == board[1][i] && board[1][i] == board[2][i])
+    return true
+  }
 }
 
 function diagonalWin() {
-  // Your code here
+    //checks to see if the initial position is not empty and if diagonal win conditions are true
+    if(board[1][1] != ' ' && ((board[1][1] == board[0][0] && board[0][0] == board[2][2]) || (board[1][1] == board[0][2] && board[0][2] == board[2][0])))
+    return true
 }
 
 function checkForWin() {
-  // Your code here
+  // checks to see if any of the win functions return true
+  if (horizontalWin() || verticalWin() || diagonalWin()) {
+    return true;
+  } 
 }
 
 function ticTacToe(row, column) {
-  // Your code here
+  //assign the input to the current player
+  board[row][column] = playerTurn;
+
+  //check to see if anyone has won, alerts players to winner if true, if not, switches players
+  if (checkForWin()) {
+    console.log(playerTurn + ' wins!');
+  } else if (playerTurn === 'X') {
+    playerTurn = "O";
+  } else {
+    playerTurn = 'X';
+  } 
+
 }
 
 function getPrompt() {
