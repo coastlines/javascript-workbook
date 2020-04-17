@@ -9,9 +9,30 @@ const rl = readline.createInterface({
 
 
 const pigLatin = (word)  => {
+  // initialize variables
+  let vowels = /[aeiou]/gi;
+  let translation;
+  let character;
+  let wordIndex;
 
-  // Your code here
+  // remove whitespace from argument and convert to lowercase
+  let cleanWord = word.toLowerCase().trim();
 
+  // check to see if the zero index of the argument is a vowel & return translation if true
+  if (cleanWord[0].match(vowels)) {
+    translation = cleanWord + 'yay';
+    return translation;
+  }
+
+  // when the first letter is not a consonant, loop through argument until the first vowel appears and store its index
+  for (character of cleanWord) {
+    if (character.match(vowels)) {
+      wordIndex = cleanWord.indexOf(character);
+      // create and return translation
+      translation = cleanWord.slice(wordIndex) + cleanWord.slice(0, wordIndex) + "ay";
+      return translation;
+    }
+  }
 }
 
 
