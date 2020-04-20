@@ -20,7 +20,8 @@ function printStacks() {
 }
 
 function movePiece() {
-  // Your code here
+  let movePieceFrom = stacks[startStack].pop();
+  let movePieceTo = stacks[endStack].push(movePieceFrom);
 
 }
 
@@ -30,12 +31,17 @@ function isLegal() {
 }
 
 function checkForWin() {
-  // Your code here
+  let win; 
+  
 
 }
 
 function towersOfHanoi(startStack, endStack) {
-  // Your code here
+  //normalize
+  //checkForWin()
+  //isLegal()
+  //movePiece()
+  
 
 }
 
