@@ -34,14 +34,15 @@ function movePiece(startStack,endStack) {
 
 function isLegal(startStack, endStack) {
   // Variables store the users current turn selection for clarity
-  let start = stacks[startStack];
-  let end = stacks[endStack];
+  // Trims whitespace and converts the player's selection to lowercase
+  let start = stacks[startStack.trim().toLowerCase()];
+  let end = stacks[endStack.trim().toLowerCase()];
 
   // If the destination array, endStack, is empty OR if the last item in the destination array is larger than the item being moved, the move is legal and the statement returns true. 
-  if ((end.length === 0) || (start[start.length-1] < end[end.length-1]) )  {
+  if ((end.length === 0) || (start[start.length-1] < end[end.length-1]) && ((start === 'stacks.a' || start === 'stacks.b' || start === 'stacks.c') && (end === 'stacks.a' || end === 'stacks.b' || end === 'stacks.c'))) {
     return true;
   // If the item being placed is larger than the last item in the destination array, the move is illegal and the statement evaluates to false.
-    } else if (start[start.length-1] > end[end.length-1]) {
+    } else if ((start[start.length-1] > end[end.length-1]) || ((start !== 'stacks[a]' || start !== 'stacks[b]' || start !== 'stacks[c]') && (end !== 'stacks[a]' || end !== 'stacks[b]' || end !== 'stacks[c]'))) {
       return false;
     }
   // Anything not expressly defined as a legal or illegal move is considered illegal and returns false.
@@ -62,6 +63,14 @@ function checkForWin() {
 }
 
 function towersOfHanoi(startStack, endStack) {
+  // trims whitespace and converts the player's selection to lowercase
+  startStack = startStack.trim().toLowerCase();
+  endStack = endStack.trim().toLowerCase();
+
+  // determine if a valid move was selected by the player
+ 
+
+
   // If a legal move is played, a ring can be moved to the selected tower. If an illegal move is played, the user receives an error message, their move is NOT logged, and they receive a new selection prompt.
   if (isLegal(startStack,endStack)) {
     movePiece(startStack, endStack);
@@ -97,6 +106,16 @@ if (typeof describe === 'function') {
       towersOfHanoi('a', 'b');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
+    // it should strip whitespace and convert to lowercase -- additional test
+    it('strip whitespace and convert input to lowercase', () => {
+      towersOfHanoi('A ', ' B');
+      assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
+    });
+    // it alert the user if they entered an invalid move -- additional test
+    it('strip whitespace and convert input to lowercase', () => {
+      towersOfHanoi('A ', ' B');
+      assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
+    });
   });
 
   describe('#isLegal()', () => {
@@ -108,6 +127,7 @@ if (typeof describe === 'function') {
       };
       assert.equal(isLegal('a', 'b'), false);
     });
+
     it('should allow a legal move', () => {
       stacks = {
         a: [4, 3, 2, 1],
@@ -117,6 +137,7 @@ if (typeof describe === 'function') {
       assert.equal(isLegal('a', 'c'), true);
     });
   });
+
   describe('#checkForWin()', () => {
     it('should detect a win', () => {
       stacks = { a: [], b: [4, 3, 2, 1], c: [] };
