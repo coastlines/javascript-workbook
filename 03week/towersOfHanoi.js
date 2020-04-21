@@ -95,8 +95,6 @@ function getPrompt() {
 }
 
 
-
-
 // Tests
 
 if (typeof describe === 'function') {
@@ -106,14 +104,16 @@ if (typeof describe === 'function') {
       towersOfHanoi('a', 'b');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
+
     // it should strip whitespace and convert to lowercase -- additional test
-    it('strip whitespace and convert input to lowercase', () => {
-      towersOfHanoi('A ', ' B');
+    it('strip whitespace', () => {
+      towersOfHanoi('  a', ' b ');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
-    // it alert the user if they entered an invalid move -- additional test
-    it('strip whitespace and convert input to lowercase', () => {
-      towersOfHanoi('A ', ' B');
+
+    // it should strip whitespace and convert to lowercase -- additional test
+    it('convert input to lowercase', () => {
+      towersOfHanoi('A', 'B');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
   });
@@ -135,6 +135,16 @@ if (typeof describe === 'function') {
         c: []
       };
       assert.equal(isLegal('a', 'c'), true);
+    });
+
+    // it alert the user if they entered an invalid move -- additional test
+    it('alert the user if they attempt an illegal move', () => {
+    stacks = {
+      a: [4, 3, 2],
+      b: [1],
+      c: []
+    };
+    assert.equal(isLegal('a', 'a'), false);
     });
   });
 
