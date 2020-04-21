@@ -20,26 +20,31 @@ function printStacks() {
 }
 
 function movePiece(startStack,endStack) {
+   // Variables store the users current turn selection for clarity
   let start = stacks[startStack];
   let end = stacks[endStack];
 
+  // The item that will be moved is removed from the end of the array and stored in a variable.
   let movePieceFrom = start.pop();
-
+  // The item being moved is passed into the push method and attached to the end of the destination array.
   end.push(movePieceFrom);
-
+  // After the item has been moved, checkForWin() is called to see if game play should continue, or if the user has won.
   checkForWin();
 }
 
 function isLegal(startStack, endStack) {
+  // Variables store the users current turn selection for clarity
   let start = stacks[startStack];
   let end = stacks[endStack];
 
+  // If the destination array, endStack, is empty OR if the last item in the destination array is larger than the item being moved, the move is legal and the statement returns true. 
   if ((end.length === 0) || (start[start.length-1] < end[end.length-1]) )  {
     return true;
-    //movePiece(startStack,endStack);
+  // If the item being placed is larger than the last item in the destination array, the move is illegal and the statement evaluates to false.
     } else if (start[start.length-1] > end[end.length-1]) {
       return false;
     }
+  // Anything not expressly defined as a legal or illegal move is considered illegal and returns false.
     else {
       return false;
     }
@@ -48,7 +53,7 @@ function isLegal(startStack, endStack) {
 function checkForWin() {
   // If an eligible stack's length is equal to the length of a winning tower (4), the check returns true. 
   // Otherwise, false is returned. 
-  // When the user wins, true is returned and passed to getPrompt() which then alerts the user to their win and ends game play. 
+  // Additionally, when the user wins, true is returned and passed to getPrompt() which then alerts the user to their win and ends game play. 
   if(stacks.b.length === 4 || stacks.c.length === 4) {
     return true;
   } else {
@@ -70,6 +75,7 @@ function getPrompt() {
   rl.question('start stack: ', (startStack) => {
     rl.question('end stack: ', (endStack) => {
       towersOfHanoi(startStack, endStack);
+      // When the user wins, they receive the message below and game play ends. Otherwise, game play continues.
       if (checkForWin() === true) {
         console.log(`Tower ${endStack} is built! \n You Win! `);
       } else {
@@ -78,7 +84,6 @@ function getPrompt() {
     });
   });
 }
-
 
 
 
