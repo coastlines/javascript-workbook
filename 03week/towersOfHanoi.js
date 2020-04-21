@@ -19,15 +19,20 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
+function movePiece(startStack, endStack) {
   let movePieceFrom = stacks[startStack].pop();
   let movePieceTo = stacks[endStack].push(movePieceFrom);
-
+  return movePieceTo;
 }
 
 function isLegal() {
-  // Your code here
+  let fromStack = stacks[startStack];
+  let toStack = stacks[endStack];
 
+  while (fromStack[fromStack.length - 1] > toStack[toStack.length - 1]) {
+    //return false
+    console.log("legal move");
+  } 
 }
 
 function checkForWin() {
@@ -39,10 +44,9 @@ function checkForWin() {
 function towersOfHanoi(startStack, endStack) {
   //normalize
   //checkForWin()
-  //isLegal()
-  //movePiece()
+  isLegal(startStack, endStack);
+  movePiece(startStack, endStack);
   
-
 }
 
 function getPrompt() {
@@ -55,46 +59,3 @@ function getPrompt() {
   });
 }
 
-// Tests
-
-if (typeof describe === 'function') {
-
-  describe('#towersOfHanoi()', () => {
-    it('should be able to move a block', () => {
-      towersOfHanoi('a', 'b');
-      assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
-    });
-  });
-
-  describe('#isLegal()', () => {
-    it('should not allow an illegal move', () => {
-      stacks = {
-        a: [4, 3, 2],
-        b: [1],
-        c: []
-      };
-      assert.equal(isLegal('a', 'b'), false);
-    });
-    it('should allow a legal move', () => {
-      stacks = {
-        a: [4, 3, 2, 1],
-        b: [],
-        c: []
-      };
-      assert.equal(isLegal('a', 'c'), true);
-    });
-  });
-  describe('#checkForWin()', () => {
-    it('should detect a win', () => {
-      stacks = { a: [], b: [4, 3, 2, 1], c: [] };
-      assert.equal(checkForWin(), true);
-      stacks = { a: [1], b: [4, 3, 2], c: [] };
-      assert.equal(checkForWin(), false);
-    });
-  });
-
-} else {
-
-  getPrompt();
-
-}
