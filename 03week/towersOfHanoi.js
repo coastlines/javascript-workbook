@@ -105,13 +105,13 @@ if (typeof describe === 'function') {
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
 
-    // it should strip whitespace and convert to lowercase -- additional test
+    // it should strip whitespace -- additional test
     it('strip whitespace', () => {
       towersOfHanoi('  a', ' b ');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
 
-    // it should strip whitespace and convert to lowercase -- additional test
+    // it should convert input to lowercase -- additional test
     it('convert input to lowercase', () => {
       towersOfHanoi('A', 'B');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
@@ -137,7 +137,7 @@ if (typeof describe === 'function') {
       assert.equal(isLegal('a', 'c'), true);
     });
 
-    // it alert the user if they entered an invalid move -- additional test
+    // it should block a user from choosing the same destination as their origination as their move + alert them to the illegal move -- additional test
     it('alert the user if they attempt an illegal move', () => {
     stacks = {
       a: [4, 3, 2],
