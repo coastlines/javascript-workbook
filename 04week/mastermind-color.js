@@ -85,10 +85,10 @@ function mastermind(guess) {
     console.log("***Let's play again!***".rainbow)
     board = [];
    // return `You guessed it!`; // this is needed to pass the unit test
-  } else if (board.length <=8 ) {
+  } else if (board.length < 9 ) {
     generateHint(guess);
-    //board.push(`${hint} ${guess}`); // comment this out for colorful fancy game play
-    console.log(hint); // uncomment this for colorful fancy game play
+    board.push(`${hint}`); // comment this out for colorful fancy game play
+    //console.log(hint, guess); // uncomment this for colorful fancy game play
     return console.log("Guess again.");
   } else {
     board = [];
