@@ -9,7 +9,38 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// Your code here
+// CrewMember Class
+class CrewMember {
+  constructor (name, job, specialSkill, ship) {
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = null;
+  }
+   enterShip(xShip) {
+    this.ship = xShip;
+    xShip.crew.push(this);
+  }
+}
+
+// Ship Class
+class Ship {
+  constructor (name, type, ability, crew) {
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
+  }
+
+  // Mission Statement
+  missionStatement() {
+    if (this.crew.length == 0) {
+      return "Can't perform a mission yet."
+    } else {
+        return this.ability;
+    }
+  }
+}
 
 //tests
 if (typeof describe === 'function'){
