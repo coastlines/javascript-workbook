@@ -17,9 +17,9 @@ class CrewMember {
     this.specialSkill = specialSkill;
     this.ship = null;
   }
-   enterShip(xShip) {
-    this.ship = xShip;
-    xShip.crew.push(this);
+   enterShip(Ship) {
+    this.ship = Ship;
+    Ship.crew.push(this);
   }
 }
 
@@ -32,15 +32,151 @@ class Ship {
     this.crew = [];
   }
 
+
   // Mission Statement
   missionStatement() {
     if (this.crew.length == 0) {
       return "Can't perform a mission yet."
-    } else {
-        return this.ability;
+      } else if (this.crew.length > 0) {
+          let rightCrew = 0;
+          let wrongCrew = 0;
+          for (const member in this.crew) {
+            if ((jobTypes[this.crew[member].job] === this.type) || (this.crew[member].job ===  'programmer')) {
+              rightCrew += 1;
+              console.log("right crew count " + rightCrew);
+              console.log(`${jobTypes[this.crew[member].job]}`);
+              console.log(this.type);
+              return this.ability;
+              } else if ( ((rightCrew < 0) || (rightCrew == "undefined")) && (wrongCrew == 0) || (wrongCrew == undefined)) {
+                return "Can't perform a mission yet."
+              }
+          }
+      } 
     }
   }
-}
+
+//    // Mission Statement -- almost
+//    missionStatement() {
+//     if (this.crew.length == 0) {
+//       return "Can't perform a mission yet."
+//       } else if (this.crew.length > 0) {
+//           for (let member in this.crew) {
+//             if ((jobTypes[this.crew[member].job] === this.type) || (jobTypes[this.crew[member].job] ===  'programmer')) {
+//               console.log(`${jobTypes[this.crew[member].job]}`);
+//               console.log(this.type);
+//               return this.ability;
+//               } else if (this.crew[member].job !== Object.values(jobTypes)) {
+//                 console.log(`first else if ${jobTypes[this.crew[member].job]}`);
+//                 console.log(this.type);
+//                 return "Can't perform a mission yet."; 
+//               }
+//           }
+//       } 
+//   }
+// }
+
+  // // Mission Statement
+  // missionStatement() {
+  //   if (this.crew.length == 0) {
+  //     return "Can't perform a mission yet."
+  //     } else if (this.crew.length > 0) {
+  //         let rightCrew = 0;
+  //         let wrongCrew = 0;
+  //         for (const member in this.crew) {
+  //           if ((jobTypes[this.crew[member].job] === this.type) || (this.crew[member].job ===  'programmer')) {
+  //             rightCrew += 1;
+  //             console.log("right crew count " + rightCrew);
+  //             console.log(`${jobTypes[this.crew[member].job]}`);
+  //             console.log(this.type);
+  //             return this.ability;
+  //             } else if ( ((rightCrew < 0) || (rightCrew == "undefined")) && (wrongCrew == 0) || (wrongCrew == undefined)) {
+  //               return "Can't perform a mission yet."
+  //             }
+  //         }
+  //     } 
+  //   }
+  // }
+
+//  // Mission Statement
+//  missionStatement() {
+//   if (this.crew.length == 0) {
+//     return "Can't perform a mission yet."
+//     } else if (this.crew.length > 0) {
+//         let rightCrew = 0;
+//         for (const member in this.crew) {
+//           if ((jobTypes[this.crew[member].job] === this.type) || (jobTypes[this.crew[member].job] ===  'programmer')) {
+//             rightCrew += 1;
+//             console.log("right crew count " + rightCrew);
+//             console.log(`${jobTypes[this.crew[member].job]}`);
+//             console.log(this.type);
+//             return this.ability;
+//             } else if (this.crew[member].job !== Object.values(jobTypes)) {
+//               console.log(`first else if ${jobTypes[this.crew[member].job]}`);
+//               console.log(this.type);
+//               return "Can't perform a mission yet."; 
+//             }
+//         }
+//     } 
+// }
+// }
+
+//   // Mission Statement
+//   missionStatement() {
+//     if (this.crew.length == 0) {
+//       return "Can't perform a mission yet."
+//       } else if (this.crew.length > 0) {
+//       for (let member in this.crew) {
+//         if ((jobTypes[this.crew[member].job] === this.type) || (jobTypes[this.crew[member].job] ===  'programmer')) {
+//           return this.ability;
+//         } else {
+//           return "Can't perform a mission yet.";
+//         }
+//       }
+//       } else {
+//       return "Can't perform a mission yet.";
+//     }
+//   }
+// }
+
+
+// } else if (this.crew.length > 0) {
+//   for (let member in this.crew) {
+//     const theRightCrew = this.crew.filter(member => 
+//       (jobTypes[this.crew[member].job] === this.type) || (jobTypes[this.crew[member].job] ===  'programmer')
+//     )}
+//     if (theRightCrew.length > 0) {
+//       return this.ability;
+//     }
+// } else {
+// return "Can't perform a mission yet."
+// }
+
+// } else if (this.crew.length > 0) {
+//   for (let member in this.crew) {
+//     if ((jobTypes[this.crew[member].job] === this.type) || (jobTypes[this.crew[member].job] ===  'programmer')) {
+//       return this.ability;
+//     } else {
+//       return "Can't perform a mission yet.";
+//     }
+//   }
+// } else {
+//   return "Can't perform a mission yet.";
+// }
+
+//  // Mission Statement
+//  missionStatement() {
+//   if (this.crew.length == 0) {
+//     return "Can't perform a mission yet."
+//   } else if (this.crew.length > 0) {
+//       let shipType = this.type;
+//       const theRightCrew = Object.values(shipType).filter(function(shiptype) {
+//         return Object.values(shipType) == jobTypes[Object.values(this.crew[member].job)]
+//       });
+//   } else {
+//     return "Can't perform a mission yet."
+//   }
+// }
+// }
 
 //tests
 if (typeof describe === 'function'){
