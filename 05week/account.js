@@ -1,30 +1,57 @@
-//
-//
-// create 2 classes:
+'use strict'
 
-// Account Class
-// attributes / fields:
-// - account number // this is passed in to the constructor
-// - owner //this is passed in to the constructor
-// - a list of transactions  // starts of empty
-// methods:
-// - balance(): loop through all the transactions, 
-//   and return the current balance
-//-  addTransaction(payee, amount); // checks to see if the amount is valid (ie cannot debit more than the balance)
-//
-//-  instead of addTransaction():
-//   deposit(amt);
-//   charge(payee, amount) 
-//
+class account {
+  constructor(accountNumber, owner, transactionList) {
+    this.accountNumber = accountNumber;
+    this.owner = owner;
+    this.transactions = [];
+  }
+  
+  // balance(): loop through all the transactions, and return the current balance
+  balance() {
+    let balance = this.transactions
+            .map(function(t) { return t.amount; })
+            .reduce(function(p, c) { return p + c; },0);
+    return balance;
+  }
 
+  // addTransaction(payee, amount); // checks to see if the amount is valid (ie cannot debit more than the balance)
+  addTransaction(payee, amount) {
+    let balance = this.balance();
+    let newBalance = balance + amount;
+
+    if (amount > 0) {
+      this.transactions.push(new transaction(amount, payee));
+    }
+    
+    if (amount < 0) {
+      if (balance > amount && newBalance > 0) {
+        this.transactions.push(new transaction(amount, payee));
+      } else {
+        console.log('Not enough funds to complete transaction.');
+      }
+    }
+
+    if (amount === 0) {
+      console.log('Nothing to do here.');
+    }
+ 
+  }
+
+}
 
 // Transaction Class
 // - amount (can be either positive or negative) // passed in to constructor
 // - payee // passed in to constructor
 // - date  // auto set in the constructor
-// 
 
-
+class transaction {
+  constructor(amount, payee, date) {
+    this.amount = Number(amount);
+    this.payee = payee;
+    this.date = Date();
+  }
+}
 
 // Create a SavingsAccount that extends Account
 // - interestRate 
@@ -37,15 +64,6 @@ let accountA = new account("123-456-789", "John Doe");
 accountA.addTransaction("Deposit", 1000);
 accountA.addTransaction("Target", -45);
 accountA.addTransaction("FreeBirds", -7.35);
-console.log(accountA.balance()); // should print 942.65
+console.log(accountA.balance()); // should print 947.65
 accountA.addTransaction("Fraud!!", -1000);  // this should not go through
-console.log(accountA.balance()); // should print 942.65
-
-// if you create the 2 different methods of adding transactions
-let accountA = new account("123-456-789", "John Doe");
-accountA.deposit(1000);
-accountA.debit(45);
-accountA.debit(7.35);
-console.log(accountA.balance()); // should print 942.65
-accountA.debit(1000);  // this should not go through
-console.log(accountA.balance()); // should print 942.65
+console.log(accountA.balance()); // should print 947.65
