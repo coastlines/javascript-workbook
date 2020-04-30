@@ -1,7 +1,7 @@
 'use strict'
 
-class account {
-  constructor(accountNumber, owner, transactionList) {
+class Account {
+  constructor(accountNumber, owner, transactions) {
     this.accountNumber = accountNumber;
     this.owner = owner;
     this.transactions = [];
@@ -21,12 +21,12 @@ class account {
     let newBalance = balance + amount;
 
     if (amount > 0) {
-      this.transactions.push(new transaction(amount, payee));
+      this.transactions.push(new Transaction(amount, payee));
     }
     
     if (amount < 0) {
       if (balance > amount && newBalance > 0) {
-        this.transactions.push(new transaction(amount, payee));
+        this.transactions.push(new Transaction(amount, payee));
       } else {
         console.log('Not enough funds to complete transaction.');
       }
@@ -35,7 +35,7 @@ class account {
     if (amount === 0) {
       console.log('Nothing to do here.');
     }
- 
+
   }
 
 }
@@ -45,7 +45,7 @@ class account {
 // - payee // passed in to constructor
 // - date  // auto set in the constructor
 
-class transaction {
+class Transaction {
   constructor(amount, payee, date) {
     this.amount = Number(amount);
     this.payee = payee;
