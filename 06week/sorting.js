@@ -101,6 +101,5 @@ const weatherStates = [...new Set(weather.map(weather => weather.weather_state_n
 console.log(weatherStates);
 
 // //Find the id of the object in weather that has a min_temp of 15.915
-
-// const idealTemp =
-// console.log(idealTemp)
+const idealTemp = weather.filter(w => {return w.min_temp === 15.915}).map(weather => weather.id);
+console.log(idealTemp)
