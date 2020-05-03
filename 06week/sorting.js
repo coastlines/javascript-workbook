@@ -18,18 +18,15 @@ const sumEvens = () => {
 console.log(sumEvens());
 
 // Find the index of the first value when added to it's index = 512 (#ATX!!)
-const atxIdx = () => {
-  let addIndexValue = numArray.map(element => element + (element - 1));
-  addIndexValue = addIndexValue.indexOf(value => value === 4);
-  // let atxIndex = numArray.forEach((element, index) => console.log(element + index));
-  // console.log(atxIndex);
-  // let atx = atxIndex.findIndex();
-  // return atx;
-  return addIndexValue;
+let nums;
+const atxIdx = (array) => {
+  nums = numArray.map((key, value) => key + value);
+  let findAtxIdx = nums.findIndex(e => e === 512);
+  //console.log('find atx index is : ' + findAtxIdx)
+  return findAtxIdx;
 }
 
-console.log(atxIdx());
-//console.log(`index: ${atxIdx}, value: ${nums[atxIdx]}`);
+console.log(`index: ${atxIdx()}, value: ${nums[atxIdx()]}`);
 
 const weather = [
   { id: 5743823523151872,
