@@ -19,7 +19,7 @@ console.log(sumEvens());
 
 // Find the index of the first value when added to it's index = 512 (#ATX!!)
 let nums;
-const atxIdx = (array) => {
+const atxIdx = () => {
   nums = numArray.map((key, value) => key + value);
   let findAtxIdx = nums.findIndex(e => e === 512);
   //console.log('find atx index is : ' + findAtxIdx)
