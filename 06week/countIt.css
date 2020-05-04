@@ -1,3 +1,4 @@
+/** FONT **/
 h1 {
   font-size: 4em;
 }
@@ -6,10 +7,10 @@ p {
   font-size: 2em;
   width: 100%;
   height: 100%;
-  max-height: 300px;
-  text-overflow: ellipsis;
+  padding: 0 10px;
 }
 
+/** MAIN **/
 section, section div, input {
   display: flex;
   flex-direction: column;
@@ -26,6 +27,8 @@ textarea {
   background-color: #000;
   color: #fff;
 }
+
+/** BUTTONS **/
 
 .buttonDiv {
   flex-direction: row;
