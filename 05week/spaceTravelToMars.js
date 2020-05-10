@@ -9,7 +9,50 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// Your code here
+// CrewMember Class
+class CrewMember {
+  constructor (name, job, specialSkill, ship) {
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = null;
+  }
+   enterShip(Ship) {
+    this.ship = Ship;
+    Ship.crew.push(this);
+  }
+}
+
+// Ship Class
+class Ship {
+  constructor (name, type, ability, crew) {
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
+  }
+  // Mission Statement
+  missionStatement() {
+    let rightCrew = 0;
+
+    if (this.crew.length == 0) {
+      return "Can't perform a mission yet."; 
+    }
+
+    if (this.crew.length > 0) {
+      for (const member in this.crew) {
+        if ((jobTypes[this.crew[member].job] === this.type) || (this.crew[member].job ===  'programmer')) {
+          rightCrew += 1;
+          return this.ability; 
+          }   
+        } 
+      if (rightCrew <= 0 ) {   
+          return "Can't perform a mission yet.";                
+      } 
+    }
+
+  } 
+}
 
 //tests
 if (typeof describe === 'function'){
